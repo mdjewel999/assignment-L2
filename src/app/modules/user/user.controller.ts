@@ -8,7 +8,7 @@ const createUser = async (req: Request, res: Response) => {
 
     const result = await UserService.createUserInToDB(userData);
     
-    const { password, ...userDataWithoutPassword } = result.toObject();
+    const {...userDataWithoutPassword } = result.toObject();
 
     res.status(200).json({
       success: true,
