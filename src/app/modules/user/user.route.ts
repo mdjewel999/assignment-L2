@@ -3,7 +3,7 @@ import { UserControllers } from './user.controller';
 
 const router = express.Router();
 
-router.post(' /api', UserControllers.createUser);
+router.post('/', UserControllers.createUser);
 
 router.get('/', UserControllers.getAllUsers);
 
