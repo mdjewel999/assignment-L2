@@ -5,16 +5,30 @@ import { UserService } from './user.service';
 const createUser = async (req: Request, res: Response) => {
   try {
     const { user: userData } = req.body;
+
     const result = await UserService.createUserInToDB(userData);
+    
+    const { password, ...userDataWithoutPassword } = result.toObject();
+
     res.status(200).json({
       success: true,
       message: 'User created successfully!',
-      data: result,
+      data: userDataWithoutPassword,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+      error: {
+        code: 500,
+        description: 'Internal Server Error',
+      },
+    });
   }
 };
+
+
 
 // all user
 const getAllUsers = async (req: Request, res: Response) => {
