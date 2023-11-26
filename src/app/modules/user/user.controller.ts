@@ -19,10 +19,10 @@ const createUser = async (req: Request, res: Response) => {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: 'Internal Server Error',
+      message: 'is not valid user',
       error: {
         code: 500,
-        description: 'Internal Server Error',
+        description: 'is not valid user',
       },
     });
   }

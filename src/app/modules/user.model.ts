@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import validator from 'validator';
 import { User } from './user/user.interface';
 
 const userSchema = new Schema<User>({
@@ -26,6 +27,10 @@ const userSchema = new Schema<User>({
     lastName: {
       type: String,
       required: [true, 'Last name is required'],
+      validate:{
+        validator: (value: string) => validator.isAlpha(value),
+        message:'{VALUE} is not valid',
+      }
     },
   },
 
